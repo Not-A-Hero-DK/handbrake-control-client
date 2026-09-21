@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 VERSION_FILE="$PROJECT_DIR/VERSION"
 APP_DIR="$PROJECT_DIR/dist/HandBrake Control.app"
 MACOS_DIR="$APP_DIR/Contents/MacOS"
@@ -26,10 +26,10 @@ GOCACHE="${GOCACHE:-/private/tmp/handbrake-control-go-cache}" \
 CLANG_MODULE_CACHE_PATH="${CLANG_MODULE_CACHE_PATH:-/private/tmp/handbrake-control-swift-cache}" \
 SWIFT_MODULECACHE_PATH="${SWIFT_MODULECACHE_PATH:-/private/tmp/handbrake-control-swift-module-cache}" \
   swiftc -parse-as-library -framework Cocoa \
-  "$PROJECT_DIR/menu/HandBrakeControlMenu.swift" \
+  "$PROJECT_DIR/HandBrakeControlMenu.swift" \
   -o "$MACOS_DIR/HandBrakeControl"
 
-cp "$PROJECT_DIR/config/default-agent.json" "$RESOURCES_DIR/agent.json"
+cp "$PROJECT_DIR/default-agent.json" "$RESOURCES_DIR/agent.json"
 
 cat > "$APP_DIR/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>

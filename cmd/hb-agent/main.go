@@ -16,7 +16,7 @@ import (
 )
 
 func main() {
-	configPath := flag.String("config", "config/agent.local.json", "path to agent JSON configuration")
+	configPath := flag.String("config", "agent.local.json", "path to agent JSON configuration")
 	flag.Parse()
 
 	cfg, err := config.Load(*configPath)

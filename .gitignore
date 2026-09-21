@@ -3,7 +3,7 @@
 **/.DS_Store
 
 # Local configuration, credentials, sockets, and runtime data
-config/agent.local.json
+agent.local.json
 data/
 *.sock
 

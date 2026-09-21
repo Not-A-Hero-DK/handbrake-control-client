@@ -5,10 +5,10 @@ the HandBrake automation workflow.
 
 ## Contents
 
-- `cmd/hb-agent`: Apple Silicon Go agent entry point.
-- `internal`: agent state and its local Unix-socket control API.
-- `menu`: native AppKit menu-bar companion.
-- `config`: safe default configuration packaged into the app on first launch.
+- `HandBrakeControlMenu.swift`: native AppKit menu-bar companion.
+- `default-agent.json`: safe defaults packaged into the app on first launch.
+- `build-macos-app.sh`: reproducible Finder-launchable app build.
+- `cmd` and `internal`: conventional Go entry point and internal packages.
 - `docs`: architecture, installation, and API notes.
 
 This public repository is self-contained; do not commit personal conversion
@@ -31,7 +31,7 @@ GOCACHE=/private/tmp/handbrake-control-go-cache go build -o bin/hb-agent ./cmd/h
 Build the Finder-launchable app bundle:
 
 ```sh
-./scripts/build-macos-app.sh
+./build-macos-app.sh
 open "dist/HandBrake Control.app"
 ```
 
@@ -56,5 +56,4 @@ not run real conversions, mount SMB shares, or alter macOS power settings.
 - [Architecture](docs/architecture.md)
 - [macOS agent installation](docs/agent-install.md)
 - [Local agent control API](docs/local-control-api.md)
-- [Menu-bar companion](menu/README.md)
-- [Product and release plan](docs/PLAN.md)
+- - [Product and release plan](docs/PLAN.md)
