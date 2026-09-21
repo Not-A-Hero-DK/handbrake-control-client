@@ -1,0 +1,14 @@
+# macOS Finder metadata
+.DS_Store
+**/.DS_Store
+
+# Local configuration, credentials, sockets, and runtime data
+config/agent.local.json
+data/
+*.sock
+
+# Generated build artifacts
+bin/
+dist/
+DerivedData/
+*.xcarchive/

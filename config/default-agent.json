@@ -1,0 +1,30 @@
+{
+  "agent": {
+    "id": "this-mac",
+    "displayName": "This Mac",
+    "heartbeatSeconds": 15,
+    "socketPath": "${HOME}/Library/Application Support/HandBrake Control/agent.sock"
+  },
+  "server": {
+    "url": "https://[SERVER_IP_ADDRESS]",
+    "enrollmentToken": "replace-this-locally"
+  },
+  "worker": {
+    "workDirectory": "${HOME}/handbrake-control",
+    "enabled": false
+  },
+  "mountProfiles": [
+    {
+      "name": "media",
+      "shareURL": "//guest@[SERVER_IP_ADDRESS]/media",
+      "mountPoint": "${HOME}/Volumes/HandBrake Control Media",
+      "credentialKeychainService": "handbrake-control.media"
+    }
+  ],
+  "power": {
+    "allowClosedLidWork": true,
+    "requireACPower": true,
+    "stopIfBatteryBelowPercent": 70,
+    "restoreSleepOnIdle": true
+  }
+}

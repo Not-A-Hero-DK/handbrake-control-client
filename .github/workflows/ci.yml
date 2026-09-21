@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build-macos:
+    name: Test and build macOS app
+    runs-on: macos-14
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Check Go formatting
+        run: test -z "$(gofmt -l cmd internal)"
+
+      - name: Test and vet Go agent
+        run: |
+          go test ./...
+          go vet ./...
+
+      - name: Validate packaged default configuration
+        run: |
+          python3 -m json.tool config/default-agent.json >/dev/null
+          go run ./cmd/hb-agent -config config/default-agent.json status >/tmp/hb-agent-status.json
+          python3 -c 'import json; json.load(open("/tmp/hb-agent-status.json"))'
+
+      - name: Build and validate app bundle
+        run: |
+          ./scripts/build-macos-app.sh
+          plutil -lint "dist/HandBrake Control.app/Contents/Info.plist"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "dist/HandBrake Control.app/Contents/Info.plist")" = "$(tr -d '[:space:]' < VERSION)"
+          test -x "dist/HandBrake Control.app/Contents/MacOS/HandBrakeControl"
+          test -x "dist/HandBrake Control.app/Contents/MacOS/hb-agent"
+          cmp config/default-agent.json "dist/HandBrake Control.app/Contents/Resources/agent.json"
+          codesign --verify --deep --strict "dist/HandBrake Control.app"
