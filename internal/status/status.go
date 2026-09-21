@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Not-A-Hero-DK/handbrake-control/internal/config"
+	"github.com/Not-A-Hero-DK/handbrake-control-client/internal/config"
 )
 
 type Report struct {

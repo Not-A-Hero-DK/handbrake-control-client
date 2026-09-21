@@ -10,9 +10,9 @@ import (
 	"path/filepath"
 	"syscall"
 
-	"github.com/Not-A-Hero-DK/handbrake-control/internal/agent"
-	"github.com/Not-A-Hero-DK/handbrake-control/internal/config"
-	"github.com/Not-A-Hero-DK/handbrake-control/internal/status"
+	"github.com/Not-A-Hero-DK/handbrake-control-client/internal/agent"
+	"github.com/Not-A-Hero-DK/handbrake-control-client/internal/config"
+	"github.com/Not-A-Hero-DK/handbrake-control-client/internal/status"
 )
 
 func main() {

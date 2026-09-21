@@ -10,8 +10,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Not-A-Hero-DK/handbrake-control/internal/config"
-	"github.com/Not-A-Hero-DK/handbrake-control/internal/status"
+	"github.com/Not-A-Hero-DK/handbrake-control-client/internal/config"
+	"github.com/Not-A-Hero-DK/handbrake-control-client/internal/status"
 )
 
 type State string

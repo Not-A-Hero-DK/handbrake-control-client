@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/Not-A-Hero-DK/handbrake-control/internal/config"
+	"github.com/Not-A-Hero-DK/handbrake-control-client/internal/config"
 )
 
 func TestEnableAndDisableCommands(t *testing.T) {
